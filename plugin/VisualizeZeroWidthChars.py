@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
 from .functions import (
-    delete_phantom,
+    delete_phantom_set,
     get_char_unicode_info,
     view_char_regions_val,
     view_is_dirty_val,

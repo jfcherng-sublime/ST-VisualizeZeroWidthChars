@@ -118,7 +118,7 @@ def detect_chars_globally(view: sublime.View) -> None:
     view_update_char_regions(view, global_get("char_regex_obj"))
 
     char_regions = [sublime.Region(*r) for r in view_char_regions_val(view)]
-    update_phantom(view, char_regions)
+    update_phantom_set(view, char_regions)
     log("debug", "Phantoms are re-rendered by detect_chars_globally()")
 
 
@@ -162,17 +162,17 @@ def new_char_phantoms(view: sublime.View, char_regions: Iterable) -> list:
     return [new_char_phantom(view, r) for r in char_regions]
 
 
-def delete_phantom(view: sublime.View) -> None:
+def delete_phantom_set(view: sublime.View) -> None:
     phantom_sets = global_get("phantom_sets")
     phantom_set_id = get_phantom_set_key(view.window().id(), view.id())
     phantom_sets.pop(phantom_set_id, None)
 
 
-def erase_phantom(view: sublime.View) -> None:
+def erase_phantom_set(view: sublime.View) -> None:
     get_view_phantom_set(view).update([])
 
 
-def update_phantom(view: sublime.View, char_regions: Iterable) -> None:
+def update_phantom_set(view: sublime.View, char_regions: Iterable) -> None:
     """
     @brief Note that "char_regions" should be Iterable[sublime.Region]
     """
