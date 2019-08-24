@@ -2,11 +2,11 @@ VisualizeZeroWidthChars has been updated. To see the changelog, visit
 Preferences » Package Settings » VisualizeZeroWidthChars » CHANGELOG
 
 
-## [0.1.0] - 2019-08-25
+## [0.1.1] - 2019-08-25
 
-### Add
-- Make background renderer interval configurable. (`typing_period`)
+### Fixed
+- Fix `phantom_set` is not deleted after closing a view.
+- Fix and remove workaround for `is_view_too_large()`.
 
 ### Changed
-- Optimize background renderer checking procedures.
-- Phantoms are now inserted to the begin position of zero-width chars.
+- Disable "dodgy single-ish spaces" by default.
