@@ -10,7 +10,7 @@ from .plugin.settings import get_package_name, get_settings_file, get_settings_o
 from .plugin.VisualizeZeroWidthChars import *
 
 # the background thread for managing phantoms for views
-background_renderer = BackgroundRenderer()
+background_renderer = BackgroundRenderer(interval=0.3)
 
 
 def plugin_loaded() -> None:

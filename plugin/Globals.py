@@ -1,4 +1,3 @@
-import sublime
 from .utils import dotted_get, dotted_set
 
 
@@ -6,8 +5,6 @@ class Globals:
     """
     @brief This class stores application-level global variables.
     """
-
-    HAS_API_VIEW_STYLE_FOR_SCOPE = int(sublime.version()) >= 3170
 
     PHANTOM_TEMPLATE = """
     <body id="open-Char-phantom">

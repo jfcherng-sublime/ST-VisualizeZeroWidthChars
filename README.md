@@ -8,7 +8,7 @@
 
 ![screenshot](https://raw.githubusercontent.com/jfcherng/Sublime-VisualizeZeroWidthChars/master/docs/screenshot.png)
 
-`VisualizeZeroWidthChars` is a Sublime Text 3 plugin which shows the position of zero-width chars.
+`VisualizeZeroWidthChars` is a Sublime Text 3 plugin which shows positions of zero-width chars.
 
 ```
 Can you tel​l me wh​ere are ​zero-width spaces?

@@ -132,14 +132,14 @@ def view_char_regions_val(view: sublime.View, char_regions=...):
     """
 
     if char_regions is ...:
-        return view.settings().get("OUIB_char_regions", [])
+        return view.settings().get("VZWC_char_regions", [])
 
-    view.settings().set("OUIB_char_regions", [region_into_list_form(r, True) for r in char_regions])
+    view.settings().set("VZWC_char_regions", [region_into_list_form(r, True) for r in char_regions])
 
 
 def view_last_update_timestamp_val(view: sublime.View, timestamp_s=...):
     """
-    @brief Set/Get the last timestamp (in sec) when "OUIB_char_regions" is updated
+    @brief Set/Get the last timestamp (in sec) when "VZWC_char_regions" is updated
 
     @param view        The view
     @param timestamp_s The last timestamp (in sec)
@@ -148,9 +148,9 @@ def view_last_update_timestamp_val(view: sublime.View, timestamp_s=...):
     """
 
     if timestamp_s is ...:
-        return view.settings().get("OUIB_last_update_timestamp", False)
+        return view.settings().get("VZWC_last_update_timestamp", False)
 
-    view.settings().set("OUIB_last_update_timestamp", timestamp_s)
+    view.settings().set("VZWC_last_update_timestamp", timestamp_s)
 
 
 def get_phantom_set_key(window_id: int, view_id: int) -> str:

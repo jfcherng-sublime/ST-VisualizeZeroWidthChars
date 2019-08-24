@@ -13,9 +13,7 @@ class BackgroundRenderer:
     @brief This class is a application-level rederer thread in the background.
     """
 
-    def __init__(self) -> None:
-        interval = 0.4  # second
-
+    def __init__(self, interval: float = 0.5) -> None:
         self.timer = RepeatingTimer(interval, self._check_current_view)
 
     def __del__(self) -> None:
@@ -33,12 +31,3 @@ class BackgroundRenderer:
 
     def cancel(self) -> None:
         self.timer.cancel()
-
-    def is_enabled(self) -> None:
-        return False
-
-    def is_visible(self) -> None:
-        return False
-
-    def is_checked(self) -> None:
-        return False
