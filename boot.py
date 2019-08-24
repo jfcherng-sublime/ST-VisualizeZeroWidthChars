@@ -31,8 +31,9 @@ def plugin_loaded() -> None:
             v.run_command("revert")
 
     global_set("logger", init_plugin_logger())
-    get_settings_object().add_on_change(get_package_name(), plugin_settings_listener)
     plugin_settings_listener()
+
+    get_settings_object().add_on_change(get_package_name(), plugin_settings_listener)
     background_renderer.start()
 
 

@@ -192,14 +192,14 @@ def detect_chars_globally(view: sublime.View) -> None:
 
 
 def generate_phantom_html(view: sublime.View, char: str) -> str:
-    code_point, name = get_char_unicode_info(char)
+    info = get_char_unicode_info(char)
 
     return global_get("PHANTOM_TEMPLATE").format(
-        style=get_setting("phantom_css"), text="U+" + code_point, code_point=code_point
+        style=get_setting("phantom_css"), text="U+" + info["code_point"]
     )
 
 
-def get_char_unicode_info(char: str) -> tuple:
+def get_char_unicode_info(char: str) -> dict:
     code_point = "{:04X}".format(ord(char))
 
     try:
@@ -207,7 +207,7 @@ def get_char_unicode_info(char: str) -> tuple:
     except Exception:
         name = "UNKNOWN"
 
-    return code_point, name.title()
+    return {"code_point": code_point, "name": name.title()}
 
 
 def new_char_phantom(view: sublime.View, char_region: sublime.Region) -> sublime.Phantom:

@@ -23,6 +23,9 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
     def __del__(self) -> None:
         self._clean_up()
 
+    def on_close(self) -> None:
+        self._clean_up()
+
     def on_load_async(self) -> None:
         view_is_dirty_val(self.view, True)
 
@@ -38,11 +41,11 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
 
             # show char info in the status bar if the cursor is at a zero-width char
             if global_get("char_regex_obj").match(char):
-                code_point, name = get_char_unicode_info(char)
+                info = get_char_unicode_info(char)
 
                 self.view.set_status(
                     "VZWC_status",
-                    "[U+{code_point} = {name}]".format(code_point=code_point, name=name),
+                    "[U+{code_point} = {name}]".format_map(info),
                 )
 
                 return
@@ -52,9 +55,6 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
     def on_modified_async(self) -> None:
         view_is_dirty_val(self.view, True)
         view_last_update_timestamp_val(self.view, get_timestamp())
-
-    def on_close(self) -> None:
-        self._clean_up()
 
     def _clean_up(self) -> None:
         view_char_regions_val(self.view, [])
