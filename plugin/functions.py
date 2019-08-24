@@ -188,12 +188,4 @@ def is_view_typing(view: sublime.View) -> bool:
 
 
 def is_view_too_large(view: sublime.View) -> bool:
-    view_size = view.size()
-
-    # somehow ST sometimes return size == 0 when reloading a file...
-    # it looks like ST thinks the file content is empty dCharng reloading
-    # and triggered "on_modified_async()"
-    if view_size == 0:
-        return True
-
-    return view_size > get_setting("disable_if_file_larger_than")
+    return view.size() > get_setting("disable_if_file_larger_than")

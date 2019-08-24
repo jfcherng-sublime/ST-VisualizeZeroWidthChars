@@ -1,7 +1,7 @@
 {
     // How detailed log messages should be?
     // Values can be "CRITICAL" (very few), "ERROR", "WARNING", "INFO", "DEBUG" (most tedious) or "NOTHING" (no log)
-    "log_level": "INFO",
+    "log_level": "DEBUG",
     // disabled this plugin if the file size is larger than the given one
     "disable_if_file_larger_than": 800000, // 800KB
     // the period (in millisecond) that consecutive modifications are treated as typing

@@ -49,4 +49,9 @@ class BackgroundRenderer:
             view_last_update_timestamp_val(view, get_timestamp())
 
     def _need_detect_chars_globally(self, view: sublime.View) -> bool:
-        return view_is_dirty_val(view) and not is_view_typing(view) and not is_view_too_large(view)
+        return (
+            not view.is_loading()
+            and view_is_dirty_val(view)
+            and not is_view_typing(view)
+            and not is_view_too_large(view)
+        )
