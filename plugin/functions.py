@@ -181,6 +181,14 @@ def update_phantom_set(view: sublime.View, char_regions: Iterable) -> None:
 
 
 def is_view_typing(view: sublime.View) -> bool:
+    """
+    @brief Determine if the view typing.
+
+    @param view The view
+
+    @return True if the view is typing, False otherwise.
+    """
+
     now_s = get_timestamp()
     pass_ms = (now_s - view_last_update_timestamp_val(view)) * 1000
 
@@ -188,4 +196,12 @@ def is_view_typing(view: sublime.View) -> bool:
 
 
 def is_view_too_large(view: sublime.View) -> bool:
+    """
+    @brief Determine if the view is too large. Note that size will be 0 if the view is loading.
+
+    @param view The view
+
+    @return True if the view is too large, False otherwise.
+    """
+
     return view.size() > get_setting("disable_if_file_larger_than")
