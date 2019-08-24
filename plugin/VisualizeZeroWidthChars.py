@@ -29,9 +29,6 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
     def on_load_async(self) -> None:
         view_is_dirty_val(self.view, True)
 
-    def on_activated_async(self) -> None:
-        view_is_dirty_val(self.view, True)
-
     def on_selection_modified_async(self) -> None:
         sel = self.view.sel()
 

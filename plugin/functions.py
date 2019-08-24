@@ -5,15 +5,7 @@ from collections.abc import Iterable
 from .Globals import global_get
 from .log import log
 from .settings import get_package_name, get_setting, get_timestamp
-from .utils import (
-    is_regions_intersected,
-    region_expand,
-    region_into_list_form,
-    region_into_st_region_form,
-    region_shift,
-    simplify_intersected_regions,
-    view_find_all_fast,
-)
+from .utils import region_into_list_form, view_find_all_fast
 
 
 def compile_invisible_chars_regex() -> tuple:
@@ -47,67 +39,6 @@ def compile_invisible_chars_regex() -> tuple:
         )
 
     return regex_obj, wanted_ranges
-
-
-def find_char_regions_by_region(view: sublime.View, region, search_radius: int = 200) -> list:
-    """
-    @brief Found intersected char regions from view by the region
-
-    @param view   The view
-    @param region The region
-
-    @return list[sublime.Region] Found char regions
-    """
-
-    return find_char_regions_by_regions(view, [region], search_radius)
-
-
-def find_char_regions_by_regions(
-    view: sublime.View, regions: Iterable, search_radius: int = 200
-) -> list:
-    """
-    @brief Found intersected char regions from view by regions
-
-    @param view    The view
-    @param regions The regions
-
-    @return list[sublime.Region] Found char regions
-    """
-
-    regions = sorted(map(region_into_st_region_form, regions))
-    search_regions = simplify_intersected_regions(
-        (region_expand(region, search_radius) for region in regions), True
-    )
-
-    char_regions = []
-    for region in search_regions:
-        coordinate_bias = max(0, region.begin())
-
-        char_regions.extend(
-            # convert "finditer()" coordinate into ST's coordinate
-            sublime.Region(*region_shift(m.span(), coordinate_bias))
-            for m in global_get("char_regex_obj").finditer(view.substr(region))
-        )
-
-    # only pick up "char_region"s that are intersected with "regions"
-    # note that both "regions" and "char_regions" are guaranteed sorted here
-    regions_idx = 0
-    char_regions_intersected = []
-
-    for char_region in char_regions:
-        for idx in range(regions_idx, len(regions)):
-            region = regions[idx]
-
-            # later "char_region" is always even larger so this "idx" is useless since now
-            if char_region.begin() > region.end():
-                regions_idx = idx + 1
-
-            if is_regions_intersected(char_region, region, True):
-                char_regions_intersected.append(char_region)
-
-                break
-
-    return char_regions_intersected
 
 
 def view_update_char_regions(view: sublime.View, char_regex_obj) -> None:
