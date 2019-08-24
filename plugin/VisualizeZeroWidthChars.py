@@ -31,8 +31,8 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
     def on_selection_modified_async(self) -> None:
         sel = self.view.sel()
 
-        # only one empty cursor
-        if len(sel) == 1 and sel[0].empty():
+        # only one cursor and it's empty or only select one char
+        if len(sel) == 1 and (sel[0].empty() or len(sel[0]) == 1):
             char = self.view.substr(sel[0].begin())
 
             # show char info in the status bar if the cursor is at a zero-width char
