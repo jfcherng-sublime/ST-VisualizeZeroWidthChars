@@ -145,7 +145,8 @@ def new_char_phantom(view: sublime.View, char_region: sublime.Region) -> sublime
     char = view.substr(char_region)[0]
 
     return sublime.Phantom(
-        sublime.Region(char_region.end()),
+        # the "begin" position has a better visual selection result than the "end" position
+        sublime.Region(char_region.begin()),
         generate_phantom_html(view, char),
         layout=sublime.LAYOUT_INLINE,
     )
