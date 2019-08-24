@@ -2,7 +2,9 @@ import sublime
 from .functions import (
     detect_chars_globally,
     get_timestamp,
+    is_view_too_large,
     is_view_typing,
+    view_is_dirty_val,
     view_last_update_timestamp_val,
 )
 from .RepeatingTimer import RepeatingTimer
@@ -19,15 +21,21 @@ class BackgroundRenderer:
     def __del__(self) -> None:
         self.cancel()
 
-    def _check_current_view(self) -> None:
-        view = sublime.active_window().active_view()
-
-        if not is_view_typing(view):
-            view_last_update_timestamp_val(view, get_timestamp())
-            detect_chars_globally(view)
-
     def start(self) -> None:
         self.timer.start()
 
     def cancel(self) -> None:
         self.timer.cancel()
+
+    def _check_current_view(self) -> None:
+        view = sublime.active_window().active_view()
+
+        if self._need_detect_chars_globally(view):
+            detect_chars_globally(view)
+
+            # view has been updated
+            view_is_dirty_val(view, False)
+            view_last_update_timestamp_val(view, get_timestamp())
+
+    def _need_detect_chars_globally(self, view: sublime.View) -> bool:
+        return view_is_dirty_val(view) and not is_view_typing(view) and not is_view_too_large(view)

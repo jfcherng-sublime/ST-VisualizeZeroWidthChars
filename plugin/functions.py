@@ -121,6 +121,22 @@ def view_update_char_regions(view: sublime.View, char_regex_obj) -> None:
     view_char_regions_val(view, view_find_all_fast(view, char_regex_obj, False))
 
 
+def view_is_dirty_val(view: sublime.View, is_dirty=...):
+    """
+    @brief Set/Get the is_dirty of the current view
+
+    @param view     The view
+    @param is_dirty Indicates if dirty
+
+    @return Optional[bool] None if the set mode, otherwise the is_dirty
+    """
+
+    if is_dirty is ...:
+        return view.settings().get("VZWC_is_dirty", True)
+
+    view.settings().set("VZWC_is_dirty", is_dirty)
+
+
 def view_char_regions_val(view: sublime.View, char_regions=...):
     """
     @brief Set/Get the char regions (in list of lists) of the current view
@@ -172,6 +188,7 @@ def detect_chars_globally(view: sublime.View) -> None:
 
     char_regions = [sublime.Region(*r) for r in view_char_regions_val(view)]
     update_phantom(view, char_regions)
+    log("debug", "Phantoms are re-rendered by detect_chars_globally()")
 
 
 def generate_phantom_html(view: sublime.View, char: str) -> str:
@@ -230,3 +247,15 @@ def is_view_typing(view: sublime.View) -> bool:
     pass_ms = (now_s - view_last_update_timestamp_val(view)) * 1000
 
     return pass_ms < get_setting("on_modified_typing_period")
+
+
+def is_view_too_large(view: sublime.View) -> bool:
+    view_size = view.size()
+
+    # somehow ST sometimes return size == 0 when reloading a file...
+    # it looks like ST thinks the file content is empty dCharng reloading
+    # and triggered "on_modified_async()"
+    if view_size == 0:
+        return True
+
+    return view_size > get_setting("disable_if_file_larger_than")
