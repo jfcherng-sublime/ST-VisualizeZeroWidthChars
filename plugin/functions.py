@@ -162,6 +162,12 @@ def new_char_phantoms(view: sublime.View, char_regions: Iterable) -> list:
     return [new_char_phantom(view, r) for r in char_regions]
 
 
+def delete_phantom(view: sublime.View) -> None:
+    phantom_sets = global_get("phantom_sets")
+    phantom_set_id = get_phantom_set_key(view.window().id(), view.id())
+    phantom_sets.pop(phantom_set_id, None)
+
+
 def erase_phantom(view: sublime.View) -> None:
     get_view_phantom_set(view).update([])
 

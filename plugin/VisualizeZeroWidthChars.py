@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
 from .functions import (
-    erase_phantom,
+    delete_phantom,
     get_char_unicode_info,
     view_char_regions_val,
     view_is_dirty_val,
@@ -20,11 +20,8 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
         view_is_dirty_val(self.view, True)
         view_last_update_timestamp_val(self.view, 0)
 
-    def __del__(self) -> None:
-        self._clean_up()
-
-    def on_close(self) -> None:
-        self._clean_up()
+    def on_pre_close(self) -> None:
+        delete_phantom_set(self.view)
 
     def on_load_async(self) -> None:
         view_is_dirty_val(self.view, True)
@@ -40,10 +37,7 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
             if global_get("char_regex_obj").match(char):
                 info = get_char_unicode_info(char)
 
-                self.view.set_status(
-                    "VZWC_status",
-                    "[U+{code_point} = {name}]".format_map(info),
-                )
+                self.view.set_status("VZWC_status", "[U+{code_point} = {name}]".format_map(info))
 
                 return
 
@@ -52,7 +46,3 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
     def on_modified_async(self) -> None:
         view_is_dirty_val(self.view, True)
         view_last_update_timestamp_val(self.view, get_timestamp())
-
-    def _clean_up(self) -> None:
-        view_char_regions_val(self.view, [])
-        erase_phantom(self.view)
