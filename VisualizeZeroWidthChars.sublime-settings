@@ -15,20 +15,21 @@
         // ref: https://git.io/fjNHh
         // zero-width characters
         "\\u007F-\\u009F": true,
-        "\\u00AD": true,
+        "\\u00AD": true, // Soft Hyphen
         "\\u200B-\\u200F": true,
         "\\u2028-\\u202E": true,
         "\\u2060-\\u206F": true,
-        "\\u3164": true,
+        "\\u3164": true, // Hangul Filler
         "\\uFE00-\\uFE0F": true,
-        "\\uFEFF": true,
+        "\\uFEFF": true, // Zero Width No-Break Space
         // dodgy single-ish spaces
-        "\\u00A0": true,
-        "\\u2000-\\u200A": true,
-        "\\u202F": true,
-        "\\u205F": true,
-        "\\u2800": true,
-        "\\u3000": true,
+        // these are disabled by default since they are not zero-width
+        "\\u00A0": false, // No-Break Space
+        "\\u2000-\\u200A": false,
+        "\\u202F": false, // Narrow No-Break Space
+        "\\u205F": false, // Medium Mathematical Space
+        "\\u2800": false, // Braille Pattern Blank
+        "\\u3000": false, // CJK full-width space
     },
     // the CSS used for the phantom
     "phantom_css": ".desc { color: var(--background); background-color: var(--foreground); line-height: 1em; font-size: 0.9em; padding: 0px 2px; }",
