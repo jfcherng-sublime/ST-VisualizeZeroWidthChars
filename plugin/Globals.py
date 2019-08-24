@@ -13,7 +13,12 @@ class Globals:
     </body>
     """
 
+    # the logger to log messages
     logger = None
+
+    # the background thread for managing phantoms for views
+    background_renderer = None
+
     activated_char_ranges = []
     char_regex_obj = None
 

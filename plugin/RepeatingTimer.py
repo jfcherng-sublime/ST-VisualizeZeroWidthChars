@@ -8,6 +8,7 @@ class RepeatingTimer:
         self.args = args
         self.kwargs = kwargs
         self.timer = None
+        self.is_running = False
 
     def callback(self):
         self.f(*self.args, **self.kwargs)
@@ -15,7 +16,9 @@ class RepeatingTimer:
 
     def cancel(self):
         self.timer.cancel()
+        self.is_running = False
 
     def start(self):
         self.timer = threading.Timer(self.interval, self.callback)
         self.timer.start()
+        self.is_running = True

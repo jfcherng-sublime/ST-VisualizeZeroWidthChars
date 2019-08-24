@@ -15,8 +15,8 @@ class BackgroundRenderer:
     @brief This class is a application-level rederer thread in the background.
     """
 
-    def __init__(self, interval: float = 0.5) -> None:
-        self.timer = RepeatingTimer(interval, self._check_current_view)
+    def __init__(self, interval_ms: int = 500) -> None:
+        self.timer = RepeatingTimer(interval_ms / 1000, self._check_current_view)
 
     def __del__(self) -> None:
         self.cancel()
@@ -26,6 +26,17 @@ class BackgroundRenderer:
 
     def cancel(self) -> None:
         self.timer.cancel()
+
+    def change_interval(self, interval_ms: int) -> None:
+        is_running = self.timer.is_running
+
+        if is_running:
+            self.cancel()
+
+        self.timer = RepeatingTimer(interval_ms / 1000, self._check_current_view)
+
+        if is_running:
+            self.start()
 
     def _check_current_view(self) -> None:
         view = sublime.active_window().active_view()

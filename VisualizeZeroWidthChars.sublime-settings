@@ -6,9 +6,9 @@
     "disable_if_file_larger_than": 800000, // 800KB
     // the period (in millisecond) that consecutive modifications are treated as typing
     // phantoms will be updated only when the user is not considered typing
-    // you can make this value larger if you feel ST gets stucked while typing
-    // or if you consider your machine is powerful, you can set it to a smaller value
-    "on_modified_typing_period": 200,
+    "typing_period": 200,
+    // the interval for checking whether to render the current view
+    "renderer_interval": 400,
     // chars that should be detected
     // you may find the unicode code point of a char on https://unicode-table.com
     "invisible_char_regex_ranges": {

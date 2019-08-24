@@ -177,7 +177,7 @@ def is_view_typing(view: sublime.View) -> bool:
     now_s = get_timestamp()
     pass_ms = (now_s - view_last_update_timestamp_val(view)) * 1000
 
-    return pass_ms < get_setting("on_modified_typing_period")
+    return pass_ms < get_setting("typing_period")
 
 
 def is_view_too_large(view: sublime.View) -> bool:
