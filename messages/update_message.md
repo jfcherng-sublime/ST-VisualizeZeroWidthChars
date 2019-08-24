@@ -2,7 +2,11 @@ VisualizeZeroWidthChars has been updated. To see the changelog, visit
 Preferences » Package Settings » VisualizeZeroWidthChars » CHANGELOG
 
 
-## [0.0.2] - 2019-08-25
+## [0.1.0] - 2019-08-25
+
+### Add
+- Make background renderer interval configurable. (`typing_period`)
 
 ### Changed
-- Show status bar as well if the selection is only one char.
+- Optimize background renderer checking procedures.
+- Phantoms are now inserted to the begin position of zero-width chars.
