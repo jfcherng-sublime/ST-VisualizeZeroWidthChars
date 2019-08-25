@@ -17,7 +17,7 @@ class Globals:
     logger = None
 
     # the background thread for managing phantoms for views
-    background_renderer = None
+    renderer_thread = None
 
     activated_char_ranges = []
     char_regex_obj = None

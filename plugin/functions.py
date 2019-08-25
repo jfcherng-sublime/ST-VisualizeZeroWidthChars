@@ -127,14 +127,6 @@ def get_view_phantom_set(view: sublime.View) -> sublime.PhantomSet:
     return phantom_sets[phantom_set_id]
 
 
-def detect_chars_globally(view: sublime.View) -> None:
-    view_update_char_regions(view, global_get("char_regex_obj"))
-
-    char_regions = [sublime.Region(*r) for r in view_char_regions_val(view)]
-    update_phantom_set(view, char_regions)
-    log("debug", "Phantoms are re-rendered by detect_chars_globally()")
-
-
 def generate_phantom_html(view: sublime.View, char: str) -> str:
     info = get_char_unicode_info(char)
 
