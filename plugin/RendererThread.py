@@ -49,4 +49,4 @@ class RendererThread(RepeatingTimer):
     def _detect_chars_globally(self, view: sublime.View) -> None:
         char_regions = view_find_all_fast(view, global_get("char_regex_obj"), True)
         update_phantom_set(view, char_regions)
-        log("debug", "Phantoms are re-rendered by detect_chars_globally()")
+        log("debug_low", "re-render phantoms")
