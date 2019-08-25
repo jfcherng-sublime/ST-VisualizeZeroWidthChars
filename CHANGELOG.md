@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.1.3] - 2019-08-25
+
+### Changed
+- Change default `typing_period` to 250ms and `renderer_interval` to 500ms.
+- Minor optimizations.
+
+### Fixed
+- Clean up phantoms when file is too large.
+- Prevent thread jobs from being overlapped when using a low interval.
+
+
 ## [0.1.2] - 2019-08-25
 
 ### Changed
