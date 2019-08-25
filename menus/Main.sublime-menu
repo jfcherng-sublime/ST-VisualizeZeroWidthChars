@@ -1,0 +1,35 @@
+[{
+    "id": "preferences",
+    "children": [{
+        "id": "package-settings",
+        "children": [{
+            "caption": "VisualizeZeroWidthChars",
+            "children": [{
+                "caption": "-",
+            }, {
+                "caption": "Settings",
+                "command": "edit_settings",
+                "args": {
+                    "base_file": "${packages}/VisualizeZeroWidthChars/VisualizeZeroWidthChars.sublime-settings",
+                    "default": "{\n\t$0\n}\n",
+                },
+            }, {
+                "caption": "-",
+            }, {
+                "caption": "README",
+                "command": "open_file",
+                "args": {
+                    "file": "${packages}/VisualizeZeroWidthChars/README.md",
+                },
+            }, {
+                "caption": "CHANGELOG",
+                "command": "open_file",
+                "args": {
+                    "file": "${packages}/VisualizeZeroWidthChars/CHANGELOG.md",
+                },
+            }, {
+                "caption": "-",
+            }],
+        }],
+    }],
+}]
