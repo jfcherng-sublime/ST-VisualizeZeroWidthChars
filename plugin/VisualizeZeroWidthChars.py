@@ -3,7 +3,6 @@ import sublime_plugin
 from .functions import (
     delete_phantom_set,
     get_char_unicode_info,
-    view_char_regions_val,
     view_is_dirty_val,
     view_last_typing_timestamp_val,
 )
@@ -16,7 +15,6 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
         super().__init__(view)
 
         self.view = view
-        view_char_regions_val(self.view, [])
         view_is_dirty_val(self.view, True)
         view_last_typing_timestamp_val(self.view, 0)
 

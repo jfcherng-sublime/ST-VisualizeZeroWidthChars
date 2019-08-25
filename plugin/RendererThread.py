@@ -5,13 +5,12 @@ from .functions import (
     is_view_too_large,
     is_view_typing,
     update_phantom_set,
-    view_char_regions_val,
     view_is_dirty_val,
-    view_update_char_regions,
 )
 from .Globals import global_get
 from .log import log
 from .RepeatingTimer import RepeatingTimer
+from .utils import view_find_all_fast
 
 
 class RendererThread(RepeatingTimer):
@@ -39,8 +38,6 @@ class RendererThread(RepeatingTimer):
         )
 
     def _detect_chars_globally(self, view: sublime.View) -> None:
-        view_update_char_regions(view, global_get("char_regex_obj"))
-
-        char_regions = [sublime.Region(*r) for r in view_char_regions_val(view)]
+        char_regions = view_find_all_fast(view, global_get("char_regex_obj"), True)
         update_phantom_set(view, char_regions)
         log("debug", "Phantoms are re-rendered by detect_chars_globally()")

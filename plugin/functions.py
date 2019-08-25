@@ -5,7 +5,6 @@ from collections.abc import Iterable
 from .Globals import global_get
 from .log import log
 from .settings import get_package_name, get_setting, get_timestamp
-from .utils import region_into_list_form, view_find_all_fast
 
 
 def compile_invisible_chars_regex() -> tuple:
@@ -39,33 +38,6 @@ def compile_invisible_chars_regex() -> tuple:
         )
 
     return regex_obj, wanted_ranges
-
-
-def view_update_char_regions(view: sublime.View, char_regex_obj) -> None:
-    """
-    @brief Update view's "char_regions" variable
-
-    @param view          The view
-    @param char_regex_obj The char regex obj
-    """
-
-    view_char_regions_val(view, view_find_all_fast(view, char_regex_obj, False))
-
-
-def view_char_regions_val(view: sublime.View, char_regions=...):
-    """
-    @brief Set/Get the char regions (in list of lists) of the current view
-
-    @param view        The view
-    @param char_regions The char regions (... = get mode, otherwise = set mode)
-
-    @return Optional[list[list[int]]] None if the set mode, otherwise the char regions
-    """
-
-    if char_regions is ...:
-        return view.settings().get("VZWC_char_regions", [])
-
-    view.settings().set("VZWC_char_regions", [region_into_list_form(r, True) for r in char_regions])
 
 
 def view_last_typing_timestamp_val(view: sublime.View, timestamp_s=...):
