@@ -100,6 +100,19 @@ def view_last_update_timestamp_val(view: sublime.View, timestamp_s=...):
     view.settings().set("VZWC_last_update_timestamp", timestamp_s)
 
 
+def set_is_dirty_for_all_views(is_dirty: bool) -> None:
+    """
+    @brief Set is_dirty for all views.
+
+    @param is_dirty Indicate if views are dirty
+    """
+
+    for w in sublime.windows():
+        for v in w.views():
+            if not v.settings().get("is_widget") and not v.is_loading():
+                view_is_dirty_val(v, is_dirty)
+
+
 def get_phantom_set_key(window_id: int, view_id: int) -> str:
     return "w{w_id}v{v_id}".format(w_id=window_id, v_id=view_id)
 

@@ -1,10 +1,8 @@
-import os
-import sublime
 from .plugin.BackgroundRenderer import BackgroundRenderer
 from .plugin.Globals import global_get, global_set
 from .plugin.log import apply_user_log_level, init_plugin_logger, log
-from .plugin.functions import compile_invisible_chars_regex
-from .plugin.settings import get_package_name, get_setting, get_settings_file, get_settings_object
+from .plugin.functions import compile_invisible_chars_regex, set_is_dirty_for_all_views
+from .plugin.settings import get_package_name, get_setting, get_settings_object
 
 # main plugin classes
 from .plugin.VisualizeZeroWidthChars import *
@@ -20,13 +18,7 @@ def plugin_loaded() -> None:
         global_set("char_regex_obj", char_regex_obj)
         log("info", "Activated char ranges: {}".format(activated_char_ranges))
 
-        refresh_if_settings_file()
-
-    def refresh_if_settings_file() -> None:
-        """ refresh the saved settings file to directly reflect visual changes """
-        v = sublime.active_window().active_view()
-        if os.path.basename(v.file_name() or "").endswith(get_settings_file()):
-            v.run_command("revert")
+        set_is_dirty_for_all_views(True)
 
     global_set("logger", init_plugin_logger())
     global_set("background_renderer", BackgroundRenderer())
