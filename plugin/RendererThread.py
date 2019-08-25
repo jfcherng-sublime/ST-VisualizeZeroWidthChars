@@ -17,7 +17,14 @@ class RendererThread(RepeatingTimer):
     def __init__(self, interval_ms: int = 1000) -> None:
         super().__init__(interval_ms, self._check_current_view)
 
+        # to prevent from overlapped processes when using a low interval
+        self.is_job_running = False
+
     def _check_current_view(self) -> None:
+        if self.is_job_running:
+            return
+
+        self.is_job_running = True
 
         view = sublime.active_window().active_view()
 
@@ -28,6 +35,8 @@ class RendererThread(RepeatingTimer):
         if self._need_detect_chars_globally(view):
             self._detect_chars_globally(view)
             view_is_dirty_val(view, False)
+
+        self.is_job_running = False
 
     def _need_detect_chars_globally(self, view: sublime.View) -> bool:
         return (
