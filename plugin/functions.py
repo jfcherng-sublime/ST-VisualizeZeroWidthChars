@@ -109,7 +109,7 @@ def set_is_dirty_for_all_views(is_dirty: bool) -> None:
 
     for w in sublime.windows():
         for v in w.views():
-            if not v.settings().get("is_widget") and not v.is_loading():
+            if is_view_normal_ready(v):
                 view_is_dirty_val(v, is_dirty)
 
 
@@ -191,6 +191,10 @@ def update_phantom_set(view: sublime.View, char_regions: Iterable) -> None:
     """
 
     get_view_phantom_set(view).update(new_char_phantoms(view, char_regions))
+
+
+def is_view_normal_ready(view: sublime.View):
+    return not view.settings().get("is_widget") and not view.is_loading()
 
 
 def is_view_typing(view: sublime.View) -> bool:
