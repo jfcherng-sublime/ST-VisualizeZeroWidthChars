@@ -1,5 +1,6 @@
 import sublime
 from .functions import (
+    erase_phantom_set,
     is_view_normal_ready,
     is_view_too_large,
     is_view_typing,
@@ -20,6 +21,10 @@ class RendererThread(RepeatingTimer):
     def _check_current_view(self) -> None:
 
         view = sublime.active_window().active_view()
+
+        if is_view_normal_ready(view) and is_view_too_large(view):
+            erase_phantom_set(view)
+            view_is_dirty_val(view, False)
 
         if self._need_detect_chars_globally(view):
             self._detect_chars_globally(view)
