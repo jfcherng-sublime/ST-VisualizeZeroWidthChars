@@ -17,11 +17,12 @@ Can you tel​l me wh​ere are ​zero-width spaces?
 
 ## Installation
 
-Currently, this plugin is not published on Package Control yet. To install this plugin, you can
+Currently, [this plugin has not been published on Package Control yet](https://github.com/wbond/package_control_channel/pull/7671).
+To install this plugin, you have 2 ways:
 
 - Download the tarball from GitHub and decompress it to `Packages/` 
   with this plugin's directory renamed to `VisualizeZeroWidthChars`.
-- Or add a custom Package Control repository (recommended).
+- Or add a custom Package Control repository (recommended, plugin will be auto updated).
 
   1. Go to `Menu > Preferences > Package Control > Settings - User`.
   1. Add custom repository and package name mapping as the following.
@@ -36,7 +37,8 @@ Currently, this plugin is not published on Package Control yet. To install this 
      ]
      ```
   1. Restart Sublime Text.
-  1. You should able to install this package with Package Control with the name of `VisualizeZeroWidthChars`.
+  1. You should be able to install this package with Package Control with the name of `VisualizeZeroWidthChars`.
+  1. After this plugin is published on Package Control, you can remove above settings.
 
 Note that this plugin only supports ST >= 3118 because of Phantom API.
 
