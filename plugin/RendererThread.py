@@ -1,13 +1,11 @@
 import sublime
 from .functions import (
-    get_timestamp,
     is_view_normal_ready,
     is_view_too_large,
     is_view_typing,
     update_phantom_set,
     view_char_regions_val,
     view_is_dirty_val,
-    view_last_update_timestamp_val,
     view_update_char_regions,
 )
 from .Globals import global_get
@@ -25,10 +23,7 @@ class RendererThread(RepeatingTimer):
 
         if self._need_detect_chars_globally(view):
             self._detect_chars_globally(view)
-
-            # view has been updated
             view_is_dirty_val(view, False)
-            view_last_update_timestamp_val(view, get_timestamp())
 
     def _need_detect_chars_globally(self, view: sublime.View) -> bool:
         return (

@@ -52,22 +52,6 @@ def view_update_char_regions(view: sublime.View, char_regex_obj) -> None:
     view_char_regions_val(view, view_find_all_fast(view, char_regex_obj, False))
 
 
-def view_is_dirty_val(view: sublime.View, is_dirty=...):
-    """
-    @brief Set/Get the is_dirty of the current view
-
-    @param view     The view
-    @param is_dirty Indicates if dirty
-
-    @return Optional[bool] None if the set mode, otherwise the is_dirty
-    """
-
-    if is_dirty is ...:
-        return view.settings().get("VZWC_is_dirty", True)
-
-    view.settings().set("VZWC_is_dirty", is_dirty)
-
-
 def view_char_regions_val(view: sublime.View, char_regions=...):
     """
     @brief Set/Get the char regions (in list of lists) of the current view
@@ -84,7 +68,7 @@ def view_char_regions_val(view: sublime.View, char_regions=...):
     view.settings().set("VZWC_char_regions", [region_into_list_form(r, True) for r in char_regions])
 
 
-def view_last_update_timestamp_val(view: sublime.View, timestamp_s=...):
+def view_last_typing_timestamp_val(view: sublime.View, timestamp_s=...):
     """
     @brief Set/Get the last timestamp (in sec) when "VZWC_char_regions" is updated
 
@@ -98,6 +82,22 @@ def view_last_update_timestamp_val(view: sublime.View, timestamp_s=...):
         return view.settings().get("VZWC_last_update_timestamp", False)
 
     view.settings().set("VZWC_last_update_timestamp", timestamp_s)
+
+
+def view_is_dirty_val(view: sublime.View, is_dirty=...):
+    """
+    @brief Set/Get the is_dirty of the current view
+
+    @param view     The view
+    @param is_dirty Indicates if dirty
+
+    @return Optional[bool] None if the set mode, otherwise the is_dirty
+    """
+
+    if is_dirty is ...:
+        return view.settings().get("VZWC_is_dirty", True)
+
+    view.settings().set("VZWC_is_dirty", is_dirty)
 
 
 def set_is_dirty_for_all_views(is_dirty: bool) -> None:
@@ -199,7 +199,7 @@ def is_view_typing(view: sublime.View) -> bool:
     """
 
     now_s = get_timestamp()
-    pass_ms = (now_s - view_last_update_timestamp_val(view)) * 1000
+    pass_ms = (now_s - view_last_typing_timestamp_val(view)) * 1000
 
     return pass_ms < get_setting("typing_period")
 
