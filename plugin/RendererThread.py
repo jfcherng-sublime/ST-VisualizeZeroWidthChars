@@ -1,10 +1,10 @@
 import sublime
-from .functions import is_view_normal_ready, is_view_too_large, is_view_typing, view_is_dirty_val
+from .functions import is_view_too_large, is_view_typing, view_is_dirty_val
 from .Globals import global_get
 from .log import log
 from .phantom_sets import erase_phantom_set, update_phantom_set
 from .RepeatingTimer import RepeatingTimer
-from .utils import view_find_all_fast
+from .utils import is_view_normal_ready, view_find_all_fast
 
 
 class RendererThread(RepeatingTimer):

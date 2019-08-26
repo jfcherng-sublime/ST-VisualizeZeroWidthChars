@@ -70,19 +70,6 @@ def view_is_dirty_val(view: sublime.View, is_dirty=...):
     view.settings().set("VZWC_is_dirty", is_dirty)
 
 
-def set_is_dirty_for_all_views(is_dirty: bool) -> None:
-    """
-    @brief Set is_dirty for all views.
-
-    @param is_dirty Indicate if views are dirty
-    """
-
-    for w in sublime.windows():
-        for v in w.views():
-            if is_view_normal_ready(v):
-                view_is_dirty_val(v, is_dirty)
-
-
 def get_char_unicode_info(char: str) -> dict:
     code_point = "{:04X}".format(ord(char))
 
@@ -92,10 +79,6 @@ def get_char_unicode_info(char: str) -> dict:
         name = "UNKNOWN"
 
     return {"code_point": code_point, "name": name.title()}
-
-
-def is_view_normal_ready(view: sublime.View):
-    return not view.settings().get("is_widget") and not view.is_loading()
 
 
 def is_view_typing(view: sublime.View) -> bool:
