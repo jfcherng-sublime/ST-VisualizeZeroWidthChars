@@ -1,8 +1,9 @@
 import sublime
 import sublime_plugin
-from .functions import get_char_unicode_info, view_is_dirty_val, view_last_typing_timestamp_val
+from .functions import view_is_dirty_val, view_last_typing_timestamp_val
 from .Globals import global_get
 from .phantom_sets import init_phantom_set, delete_phantom_set
+from .popup import show_popup
 from .settings import get_timestamp
 
 
@@ -32,12 +33,12 @@ class VisualizeZeroWidthChars(sublime_plugin.ViewEventListener):
         if len(sel) == 1 and (sel[0].empty() or len(sel[0]) == 1):
             char = self.view.substr(sel[0].begin())
 
-            # show char info in the status bar if the cursor is at a zero-width char
+            # if the cursor is at a zero-width char
             if global_get("char_regex_obj").match(char):
-                info = get_char_unicode_info(char)
+                # get a non-empty char_region
+                if sel[0].empty():
+                    char_region = sublime.Region(sel[0].a, sel[0].a + 1)
+                else:
+                    char_region = sel[0]
 
-                self.view.set_status("VZWC_status", "[U+{code_point} = {name}]".format_map(info))
-
-                return
-
-        self.view.set_status("VZWC_status", "")
+                show_popup(self.view, char_region, char_region.begin())
