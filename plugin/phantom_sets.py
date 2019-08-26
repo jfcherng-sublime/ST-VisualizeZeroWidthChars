@@ -1,9 +1,15 @@
 import sublime
 from collections.abc import Iterable
 from .functions import get_char_unicode_info
-from .Globals import global_get
 from .PhatomSetsManager import PhatomSetsManager
 from .settings import get_package_name, get_setting
+
+PHANTOM_TEMPLATE = """
+<body id="visualize-zero-width-chars-phantom">
+    <style>{style}</style>
+    <span class="desc">{text}</span>
+</body>
+"""
 
 
 def get_phantom_set_id(view: sublime.View) -> str:
@@ -35,7 +41,7 @@ def update_phantom_set(view: sublime.View, char_regions: Iterable) -> None:
 def generate_phantom_html(view: sublime.View, char: str) -> str:
     info = get_char_unicode_info(char)
 
-    return global_get("PHANTOM_TEMPLATE").format(
+    return PHANTOM_TEMPLATE.format(
         style=get_setting("phantom_css"), text="U+" + info["code_point"]
     )
 

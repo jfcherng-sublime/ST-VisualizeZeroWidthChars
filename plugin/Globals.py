@@ -6,13 +6,6 @@ class Globals:
     @brief This class stores application-level global variables.
     """
 
-    PHANTOM_TEMPLATE = """
-    <body id="open-Char-phantom">
-        <style>{style}</style>
-        <span class="desc">{text}</span>
-    </body>
-    """
-
     # the logger to log messages
     logger = None
 
