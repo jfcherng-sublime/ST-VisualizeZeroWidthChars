@@ -24,7 +24,7 @@ To install this plugin, you have 2 ways:
   with this plugin's directory renamed to `VisualizeZeroWidthChars`.
 - Or add a custom Package Control repository (recommended, plugin will be auto updated).
 
-  1. Go to `Menu > Preferences > Package Control > Settings - User`.
+  1. Go to `Preferences` » `Package Settings` » `Package Control` » `Settings - User`.
   1. Add custom repository and package name mapping as the following.
      ```javascript
      "package_name_map":
