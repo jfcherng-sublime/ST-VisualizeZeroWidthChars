@@ -22,10 +22,6 @@ class Globals:
     activated_char_ranges = []
     char_regex_obj = None
 
-    phantom_sets = {
-        # phantom_set_id: sublime.PhantomSet object,
-    }
-
 
 def global_get(dotted: str, default=None):
     return dotted_get(Globals, dotted, default)
