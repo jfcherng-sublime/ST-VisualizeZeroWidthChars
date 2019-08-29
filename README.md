@@ -44,7 +44,7 @@ To install this plugin, there are 2 ways:
 
 Note that this plugin only supports ST >= 3118 because of Phantom API.
 
-💡 You may also interest in my other plugins: https://packagecontrol.io/search/jfcherng
+💡 You may also be interested in my other plugins: https://packagecontrol.io/search/jfcherng
 
 
 ## Settings
