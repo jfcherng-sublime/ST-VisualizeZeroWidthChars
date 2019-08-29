@@ -1,4 +1,5 @@
 import sublime
+import traceback
 from .functions import is_view_too_large, is_view_typing, view_is_dirty_val
 from .Globals import global_get
 from .log import log
@@ -22,13 +23,18 @@ class RendererThread(RepeatingTimer):
 
         view = sublime.active_window().active_view()
 
-        if is_view_normal_ready(view) and is_view_too_large(view):
-            erase_phantom_set(view)
-            view_is_dirty_val(view, False)
+        try:
+            if is_view_normal_ready(view) and is_view_too_large(view):
+                erase_phantom_set(view)
+                view_is_dirty_val(view, False)
 
-        if self._need_detect_chars_globally(view):
-            self._detect_chars_globally(view)
-            view_is_dirty_val(view, False)
+            if self._need_detect_chars_globally(view):
+                self._detect_chars_globally(view)
+                view_is_dirty_val(view, False)
+        # do not let an Exception terminates the rendering thread
+        # we just print out the traceback information to the console this time
+        except Exception:
+            log("error", traceback.format_exc())
 
         self.is_rendering = False
 
