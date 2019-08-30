@@ -1,5 +1,5 @@
 import sublime
-from collections.abc import Iterable
+from typing import Iterable, List
 from .functions import get_char_unicode_info
 from .PhatomSetsManager import PhatomSetsManager
 from .settings import get_package_name, get_setting
@@ -28,11 +28,7 @@ def erase_phantom_set(view: sublime.View) -> None:
     PhatomSetsManager.erase_phantom_set(get_phantom_set_id(view))
 
 
-def update_phantom_set(view: sublime.View, char_regions: Iterable) -> None:
-    """
-    @brief Note that "char_regions" should be Iterable[sublime.Region]
-    """
-
+def update_phantom_set(view: sublime.View, char_regions: Iterable[sublime.Region]) -> None:
     PhatomSetsManager.update_phantom_set(
         get_phantom_set_id(view), new_char_phantoms(view, char_regions)
     )
@@ -41,9 +37,7 @@ def update_phantom_set(view: sublime.View, char_regions: Iterable) -> None:
 def generate_phantom_html(view: sublime.View, char: str) -> str:
     info = get_char_unicode_info(char)
 
-    return PHANTOM_TEMPLATE.format(
-        style=get_setting("phantom_css"), text="U+" + info["code_point"]
-    )
+    return PHANTOM_TEMPLATE.format(style=get_setting("phantom_css"), text="U+" + info["code_point"])
 
 
 def new_char_phantom(view: sublime.View, char_region: sublime.Region) -> sublime.Phantom:
@@ -57,11 +51,7 @@ def new_char_phantom(view: sublime.View, char_region: sublime.Region) -> sublime
     )
 
 
-def new_char_phantoms(view: sublime.View, char_regions: Iterable) -> list:
-    """
-    @brief Note that "char_regions" should be Iterable[sublime.Region]
-
-    @return list[sublime.Phantom]
-    """
-
+def new_char_phantoms(
+    view: sublime.View, char_regions: Iterable[sublime.Region]
+) -> List[sublime.Phantom]:
     return [new_char_phantom(view, r) for r in char_regions]

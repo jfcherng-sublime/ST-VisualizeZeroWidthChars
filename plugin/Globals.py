@@ -1,3 +1,4 @@
+from typing import Any, Optional
 from .utils import dotted_get, dotted_set
 
 
@@ -16,9 +17,9 @@ class Globals:
     char_regex_obj = None
 
 
-def global_get(dotted: str, default=None):
+def global_get(dotted: str, default: Optional[Any] = None) -> Any:
     return dotted_get(Globals, dotted, default)
 
 
-def global_set(dotted: str, value) -> None:
+def global_set(dotted: str, value: Any) -> None:
     return dotted_set(Globals, dotted, value)

@@ -1,15 +1,16 @@
 import re
 import sublime
 import unicodedata
+from typing import Any, Dict, List, Tuple, Pattern, Optional
 from .log import log
 from .settings import get_setting, get_timestamp
 
 
-def compile_invisible_chars_regex() -> tuple:
+def compile_invisible_chars_regex() -> Tuple[Pattern, List[str]]:
     """
     @brief Get the compiled regex object for matching Chars.
 
-    @return Compiled regex object
+    @return (compiled regex object, wanted ranges)
     """
 
     # fmt: off
@@ -38,39 +39,41 @@ def compile_invisible_chars_regex() -> tuple:
     return regex_obj, wanted_ranges
 
 
-def view_last_typing_timestamp_val(view: sublime.View, timestamp_s=...):
+def view_last_typing_timestamp_val(
+    view: sublime.View, timestamp_s: Optional[float] = None
+) -> Optional[float]:
     """
     @brief Set/Get the last timestamp (in sec) when "VZWC_char_regions" is updated
 
     @param view        The view
     @param timestamp_s The last timestamp (in sec)
 
-    @return Optional[float] None if the set mode, otherwise the value
+    @return None if the set mode, otherwise the value
     """
 
-    if timestamp_s is ...:
+    if timestamp_s is None:
         return view.settings().get("VZWC_last_update_timestamp", False)
 
     view.settings().set("VZWC_last_update_timestamp", timestamp_s)
 
 
-def view_is_dirty_val(view: sublime.View, is_dirty=...):
+def view_is_dirty_val(view: sublime.View, is_dirty: Optional[bool] = None) -> Optional[bool]:
     """
     @brief Set/Get the is_dirty of the current view
 
     @param view     The view
     @param is_dirty Indicates if dirty
 
-    @return Optional[bool] None if the set mode, otherwise the is_dirty
+    @return None if the set mode, otherwise the is_dirty
     """
 
-    if is_dirty is ...:
+    if is_dirty is None:
         return view.settings().get("VZWC_is_dirty", True)
 
     view.settings().set("VZWC_is_dirty", is_dirty)
 
 
-def get_char_unicode_info(char: str) -> dict:
+def get_char_unicode_info(char: str) -> Dict[str, Any]:
     code_point = "{:04X}".format(ord(char))
 
     try:

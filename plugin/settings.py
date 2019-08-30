@@ -1,5 +1,6 @@
 import sublime
 import time
+from typing import Any, Optional
 from .utils import dotted_get
 
 
@@ -45,7 +46,7 @@ def get_settings_object() -> sublime.Settings:
     return sublime.load_settings(get_settings_file())
 
 
-def get_setting(dotted: str, default=None):
+def get_setting(dotted: str, default: Optional[Any] = None) -> Any:
     """
     @brief Get the plugin setting with the dotted key.
 
