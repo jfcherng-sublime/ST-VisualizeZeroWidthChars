@@ -10,9 +10,9 @@ def get_package_name() -> str:
     @return The package name.
     """
 
-    # __package__ will be "XXX.plugin" under this folder structure
-    # so I just have it hard-coded, sadly :/
-    return "VisualizeZeroWidthChars"
+    # __package__ will be "THE_PLUGIN_NAME.plugin" under this folder structure
+    # anyway, the top module should always be the plugin name
+    return __package__.partition(".")[0]
 
 
 def get_package_path() -> str:
