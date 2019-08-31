@@ -1,5 +1,6 @@
 # Sublime-VisualizeZeroWidthChars
 
+<a href="https://travis-ci.org/jfcherng/Sublime-VisualizeZeroWidthChars"><img alt="Travis (.org) branch" src="https://img.shields.io/travis/jfcherng/Sublime-VisualizeZeroWidthChars/master?style=flat-square"></a>
 <a href="https://packagecontrol.io/packages/VisualizeZeroWidthChars"><img alt="Package Control" src="https://img.shields.io/packagecontrol/dt/VisualizeZeroWidthChars?style=flat-square"></a>
 <a href="https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/tags"><img alt="GitHub tag (latest SemVer)" src="https://img.shields.io/github/tag/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github"></a>
 <a href="https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/blob/master/LICENSE"><img alt="Project license" src="https://img.shields.io/github/license/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github"></a>

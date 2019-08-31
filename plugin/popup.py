@@ -15,7 +15,7 @@ def generate_popup_html(view: sublime.View, char_region: sublime.Region) -> str:
     return POPUP_TEMPLATE.format_map(char_info)
 
 
-def show_popup(view: sublime.View, char_region: sublime.Region, point: int) -> str:
+def show_popup(view: sublime.View, char_region: sublime.Region, point: int) -> None:
     view.show_popup(
         generate_popup_html(view, char_region),
         flags=sublime.COOPERATE_WITH_AUTO_COMPLETE,

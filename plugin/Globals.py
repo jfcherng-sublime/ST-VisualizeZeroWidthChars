@@ -1,4 +1,6 @@
-from typing import Any, Optional
+import logging
+import threading
+from typing import Any, List, Optional, Pattern
 from .utils import dotted_get, dotted_set
 
 
@@ -8,13 +10,13 @@ class Globals:
     """
 
     # the logger to log messages
-    logger = None
+    logger = None  # type: logging.logger
 
     # the background thread for managing phantoms for views
-    renderer_thread = None
+    renderer_thread = None  # type: threading.Thread
 
-    activated_char_ranges = []
-    char_regex_obj = None
+    activated_char_ranges = []  # type: List[str]
+    char_regex_obj = None  # type: Pattern
 
 
 def global_get(dotted: str, default: Optional[Any] = None) -> Any:

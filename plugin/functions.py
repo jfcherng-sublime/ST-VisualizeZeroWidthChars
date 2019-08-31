@@ -55,6 +55,7 @@ def view_last_typing_timestamp_val(
         return view.settings().get("VZWC_last_update_timestamp", False)
 
     view.settings().set("VZWC_last_update_timestamp", timestamp_s)
+    return None
 
 
 def view_is_dirty_val(view: sublime.View, is_dirty: Optional[bool] = None) -> Optional[bool]:
@@ -71,6 +72,7 @@ def view_is_dirty_val(view: sublime.View, is_dirty: Optional[bool] = None) -> Op
         return view.settings().get("VZWC_is_dirty", True)
 
     view.settings().set("VZWC_is_dirty", is_dirty)
+    return None
 
 
 def get_char_unicode_info(char: str) -> Dict[str, Any]:
@@ -94,12 +96,15 @@ def is_view_typing(view: sublime.View) -> bool:
     """
 
     now_s = get_timestamp()
-    pass_ms = (now_s - view_last_typing_timestamp_val(view)) * 1000
+    last_typing_s = view_last_typing_timestamp_val(view)
 
-    return pass_ms < get_setting("typing_period")
+    if not last_typing_s:
+        last_typing_s = 0
+
+    return (now_s - last_typing_s) * 1000 < get_setting("typing_period")
 
 
-def is_view_too_large(view: sublime.View) -> bool:
+def is_view_too_large(view: Optional[sublime.View]) -> bool:
     """
     @brief Determine if the view is too large. Note that size will be 0 if the view is loading.
 
@@ -108,4 +113,4 @@ def is_view_too_large(view: sublime.View) -> bool:
     @return True if the view is too large, False otherwise.
     """
 
-    return view.size() > get_setting("disable_if_file_larger_than")
+    return bool(view and view.size() > get_setting("disable_if_file_larger_than"))

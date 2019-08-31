@@ -1,5 +1,6 @@
 import sublime
 import traceback
+from typing import Optional
 from .functions import is_view_too_large, is_view_typing, view_is_dirty_val
 from .Globals import global_get
 from .log import log
@@ -25,10 +26,14 @@ class RendererThread(RepeatingTimer):
 
         try:
             if is_view_normal_ready(view) and is_view_too_large(view):
+                assert isinstance(view, sublime.View)
+
                 erase_phantom_set(view)
                 view_is_dirty_val(view, False)
 
             if self._need_detect_chars_globally(view):
+                assert isinstance(view, sublime.View)
+
                 self._detect_chars_globally(view)
                 view_is_dirty_val(view, False)
         # do not let an Exception terminates the rendering thread
@@ -38,15 +43,17 @@ class RendererThread(RepeatingTimer):
 
         self.is_rendering = False
 
-    def _need_detect_chars_globally(self, view: sublime.View) -> bool:
-        return (
-            is_view_normal_ready(view)
-            and view_is_dirty_val(view)
-            and not is_view_typing(view)
-            and not is_view_too_large(view)
+    def _need_detect_chars_globally(self, view: Optional[sublime.View]) -> bool:
+        if not is_view_normal_ready(view):
+            return False
+
+        assert isinstance(view, sublime.View)
+
+        return bool(
+            view_is_dirty_val(view) and not is_view_typing(view) and not is_view_too_large(view)
         )
 
     def _detect_chars_globally(self, view: sublime.View) -> None:
-        char_regions = view_find_all_fast(view, global_get("char_regex_obj"), True)
+        char_regions = view_find_all_fast(view, global_get("char_regex_obj"))
         update_phantom_set(view, char_regions)
         log("debug_low", "re-render phantoms")
