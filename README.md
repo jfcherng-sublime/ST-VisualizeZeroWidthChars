@@ -20,27 +20,23 @@ Can you tel​l me wh​ere are ​zero-width spaces?
 ~~This plugin is available on Package Control by the name of [VisualizeZeroWidthChars](https://packagecontrol.io/packages/VisualizeZeroWidthChars).~~
 
 Currently, [this plugin has not been published on Package Control yet](https://github.com/wbond/package_control_channel/pull/7671).
-To install this plugin, there are 2 ways:
+To install this plugin, I only suggest one way: Add a custom Package Control repository.
 
-- Download the tarball from GitHub and decompress it to `Packages/` 
-  with this plugin's directory renamed to `VisualizeZeroWidthChars`.
-- Or add a custom Package Control repository (recommended, plugin will be auto updated).
-
-  1. Go to `Preferences` » `Package Settings` » `Package Control` » `Settings - User`.
-  1. Add custom repository and package name mapping as the following.
-     ```javascript
-     "package_name_map":
-     {
-       "Sublime-VisualizeZeroWidthChars": "VisualizeZeroWidthChars",
-     },
-     "repositories":
-     [
-       "https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars",
-     ]
-     ```
-  1. Restart Sublime Text.
-  1. You should be able to install this package with Package Control with the name of `VisualizeZeroWidthChars`.
-  1. Once this plugin has been published on Package Control, you can remove above settings.
+1. Go to `Preferences` » `Package Settings` » `Package Control` » `Settings - User`.
+1. Add custom repository and package name mapping as the following.
+   ```javascript
+   "package_name_map":
+   {
+     "Sublime-VisualizeZeroWidthChars": "VisualizeZeroWidthChars",
+   },
+   "repositories":
+   [
+     "https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars",
+   ]
+   ```
+1. Restart Sublime Text.
+1. You should be able to install this package with Package Control with the name of `VisualizeZeroWidthChars`.
+1. Once this plugin has been published on Package Control, you can remove above settings.
 
 Note that this plugin only supports ST >= 3118 because of Phantom API.
 
