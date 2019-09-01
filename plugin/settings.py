@@ -1,4 +1,5 @@
 import sublime
+import sys
 import time
 from typing import Any, Optional
 from .utils import dotted_get
@@ -67,3 +68,19 @@ def get_timestamp() -> float:
     """
 
     return time.time()
+
+
+def get_setting_renderer_interval() -> int:
+    """
+    @brief Get the renderer interval.
+
+    @return The renderer interval.
+    """
+
+    interval = get_setting("renderer_interval", 250)
+
+    if interval < 0:
+        interval = sys.maxsize
+
+    # a minimum for not crashing the system accidentally
+    return int(max(30, interval))
