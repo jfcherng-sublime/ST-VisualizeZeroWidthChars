@@ -10,7 +10,7 @@ class Globals:
     """
 
     # the logger to log messages
-    logger = None  # type: logging.logger
+    logger = None  # type: logging.Logger
 
     # the background thread for managing phantoms for views
     renderer_thread = None  # type: threading.Thread
