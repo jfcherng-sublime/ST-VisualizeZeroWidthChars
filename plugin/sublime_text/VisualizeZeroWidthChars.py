@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 from ..functions import view_is_dirty_val, view_last_typing_timestamp_val
 from ..Globals import global_get
-from ..phantom_sets import init_phantom_set, delete_phantom_set
+from ..phantom_set import init_phantom_set, delete_phantom_set
 from ..popup import show_popup
 from ..settings import get_timestamp
 
