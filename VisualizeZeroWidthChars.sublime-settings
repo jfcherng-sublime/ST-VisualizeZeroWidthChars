@@ -1,4 +1,6 @@
 {
+    // this value is used to indicate the version of the current settings file format.
+    "@version": 0,
     // how detailed log messages should be?
     // values can be
     //     - "NOTHING" (do not show anything)
