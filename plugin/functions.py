@@ -6,22 +6,22 @@ from .log import log
 from .settings import get_setting, get_timestamp
 
 
-def compile_invisible_chars_regex() -> Tuple[Pattern, List[str]]:
+def compile_find_chars_regex() -> Tuple[Pattern, List[str]]:
     """
     @brief Get the compiled regex object for matching Chars.
 
-    @return (compiled regex object, wanted ranges)
+    @return (compiled regex object, enabled rule names)
     """
 
-    # fmt: off
-    wanted_ranges = [
-        range_
-        for range_, enabled in get_setting("invisible_char_regex_ranges").items()
-        if enabled
-    ]
-    # fmt: on
+    enabled_rules = {
+        rule_name: rule
+        for rule_name, rule in get_setting("find_char_regex_ranges").items()
+        if rule["enabled"]
+    }
 
-    regex = "[{char_range}]".format(char_range="".join(wanted_ranges))
+    regex = "[{char_range}]".format(
+        char_range="".join(["".join(rule["chars"]) for rule in enabled_rules.values()])
+    )
 
     log("debug", "Invisible chars matching regex: {}".format(regex))
 
@@ -31,12 +31,12 @@ def compile_invisible_chars_regex() -> Tuple[Pattern, List[str]]:
         log(
             "critical",
             "Cannot compile regex `{regex}` because `{reason}`. "
-            'Please check "invisible_char_regex_ranges" in plugin settings.'.format(
+            'Please check "find_char_regex_ranges" in plugin settings.'.format(
                 regex=regex, reason=e
             ),
         )
 
-    return regex_obj, wanted_ranges
+    return regex_obj, list(enabled_rules.keys())
 
 
 def view_last_typing_timestamp_val(

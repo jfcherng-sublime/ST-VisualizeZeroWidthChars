@@ -1,5 +1,5 @@
 import sublime
-from .functions import compile_invisible_chars_regex, view_is_dirty_val
+from .functions import compile_find_chars_regex, view_is_dirty_val
 from .Globals import global_get, global_set
 from .log import apply_user_log_level, init_plugin_logger, log
 from .RendererThread import RendererThread
@@ -14,10 +14,10 @@ def set_up() -> None:
         apply_user_log_level(global_get("logger"))
         global_get("renderer_thread").set_interval(get_setting_renderer_interval())
 
-        char_regex_obj, activated_char_ranges = compile_invisible_chars_regex()
+        char_regex_obj, activated_char_ranges = compile_find_chars_regex()
         global_set("activated_char_ranges", activated_char_ranges)
         global_set("char_regex_obj", char_regex_obj)
-        log("info", "Activated char ranges: {}".format(activated_char_ranges))
+        log("info", "Activated char rules: {}".format(activated_char_ranges))
 
         set_is_dirty_for_all_views(True)
 

@@ -21,25 +21,34 @@
     "renderer_interval": 500,
     // chars that should be detected
     // you may find the unicode code point of a char on https://unicode-table.com
-    "invisible_char_regex_ranges": {
-        // ref: https://git.io/fjNHh
-        // zero-width characters
-        "\\u007F-\\u009F": true,
-        "\\u00AD": true, // Soft Hyphen
-        "\\u200B-\\u200F": true,
-        "\\u2028-\\u202E": true,
-        "\\u2060-\\u206F": true,
-        "\\u3164": true, // Hangul Filler
-        "\\uFE00-\\uFE0F": true,
-        "\\uFEFF": true, // Zero Width No-Break Space
+    "find_char_regex_ranges": {
+        // zero-width chars
+        "zero-width": {
+            "enabled": true,
+            "chars": [
+                "\\u007F-\\u009F",
+                "\\u00AD", // Soft Hyphen
+                "\\u200B-\\u200F",
+                "\\u2028-\\u202E",
+                "\\u2060-\\u206F",
+                "\\u3164", // Hangul Filler
+                "\\uFE00-\\uFE0F",
+                "\\uFEFF", // Zero Width No-Break Space
+            ],
+        },
         // dodgy single-ish spaces
-        // these are disabled by default since they are not zero-width
-        "\\u00A0": false, // No-Break Space
-        "\\u2000-\\u200A": false,
-        "\\u202F": false, // Narrow No-Break Space
-        "\\u205F": false, // Medium Mathematical Space
-        "\\u2800": false, // Braille Pattern Blank
-        "\\u3000": false, // CJK full-width space
+        "spaces": {
+            "enabled": false,
+            "chars": [
+                "\\u00A0", // No-Break Space
+                "\\u2000-\\u200A",
+                "\\u202F", // Narrow No-Break Space
+                "\\u205F", // Medium Mathematical Space
+                "\\u2800", // Braille Pattern Blank
+                "\\u3000", // CJK full-width space
+            ],
+        },
+        // you may add your own rules below...
     },
     // the CSS used for the phantom
     "phantom_css": ".desc { color: var(--background); background-color: var(--foreground); line-height: 1em; font-size: 0.9em; padding: 0px 2px; }",
