@@ -9,35 +9,18 @@
 
 ![screenshot](https://raw.githubusercontent.com/jfcherng/Sublime-VisualizeZeroWidthChars/master/docs/screenshot.png)
 
-`VisualizeZeroWidthChars` is a Sublime Text 3 plugin which indicates locations of zero-width chars.
+`VisualizeZeroWidthChars` is a Sublime Text 3 plugin which indicates locations of zero-width chars by default.
+You are able to indicate more chars by adding them in the settings file.
 
-```
+```text
 Can you tel​l me wh​ere are ​zero-width spaces?
 ```
 
 
 ## Installation
 
-~~This plugin is available on Package Control by the name of [VisualizeZeroWidthChars](https://packagecontrol.io/packages/VisualizeZeroWidthChars).~~
-
-Currently, [this plugin has not been published on Package Control yet](https://github.com/wbond/package_control_channel/pull/7671).
-To install this plugin, I only suggest one way: Add a custom Package Control repository.
-
-1. Go to `Preferences` » `Package Settings` » `Package Control` » `Settings - User`.
-1. Add custom repository and package name mapping as the following.
-   ```javascript
-   "package_name_map":
-   {
-     "Sublime-VisualizeZeroWidthChars": "VisualizeZeroWidthChars",
-   },
-   "repositories":
-   [
-     "https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars",
-   ]
-   ```
-1. Restart Sublime Text.
-1. You should be able to install this package with Package Control with the name of `VisualizeZeroWidthChars`.
-1. Once this plugin has been published on Package Control, you can remove above settings.
+This plugin is available on Package Control by the name of
+[VisualizeZeroWidthChars](https://packagecontrol.io/packages/VisualizeZeroWidthChars).
 
 Note that this plugin only supports ST >= 3118 because of Phantom API.
 
@@ -48,5 +31,5 @@ Note that this plugin only supports ST >= 3118 because of Phantom API.
 
 To edit settings, go to `Preferences` » `Package Settings` » `VisualizeZeroWidthChars` » `Settings`.
 
-I think the [settings file](https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/blob/master/VisualizeZeroWidthChars.sublime-settings) 
+I think the [settings file](https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/blob/master/VisualizeZeroWidthChars.sublime-settings)
 is self-explanatory. But if you still have questions, feel free to open an issue.
