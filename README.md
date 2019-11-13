@@ -17,6 +17,12 @@ Can you tel​l me wh​ere are ​zero-width spaces?
 ```
 
 
+## Important Notice
+
+If you are using Sublime Text 4, you can set `draw_unicode_white_space` to draw invisible unicode whitespace.
+In that case, you probably don't need this plugin.
+
+
 ## Installation
 
 This plugin is available on Package Control by the name of
