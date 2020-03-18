@@ -1,11 +1,11 @@
 # Sublime-VisualizeZeroWidthChars
 
-<a href="https://travis-ci.org/jfcherng/Sublime-VisualizeZeroWidthChars"><img alt="Travis (.org) branch" src="https://img.shields.io/travis/jfcherng/Sublime-VisualizeZeroWidthChars/master?style=flat-square"></a>
-<a href="https://packagecontrol.io/packages/VisualizeZeroWidthChars"><img alt="Package Control" src="https://img.shields.io/packagecontrol/dt/VisualizeZeroWidthChars?style=flat-square"></a>
-<a href="https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/tags"><img alt="GitHub tag (latest SemVer)" src="https://img.shields.io/github/tag/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github"></a>
-<a href="https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/blob/master/LICENSE"><img alt="Project license" src="https://img.shields.io/github/license/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github"></a>
-<a href="https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github"></a>
-<a href="https://www.paypal.me/jfcherng/5usd" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-blue.svg?style=flat-square&logo=paypal"></a>
+[![Travis (.org) branch](https://img.shields.io/travis/jfcherng/Sublime-VisualizeZeroWidthChars/master?style=flat-square)](https://travis-ci.org/jfcherng/Sublime-VisualizeZeroWidthChars)
+[![Package Control](https://img.shields.io/packagecontrol/dt/VisualizeZeroWidthChars?style=flat-square)](https://packagecontrol.io/packages/VisualizeZeroWidthChars)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github)](https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/tags)
+[![Project license](https://img.shields.io/github/license/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github)](https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/jfcherng/Sublime-VisualizeZeroWidthChars?style=flat-square&logo=github)](https://github.com/jfcherng/Sublime-VisualizeZeroWidthChars/stargazers)
+[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-blue.svg?style=flat-square&logo=paypal)](https://www.paypal.me/jfcherng/5usd)
 
 ![screenshot](https://raw.githubusercontent.com/jfcherng/Sublime-VisualizeZeroWidthChars/master/docs/screenshot.png)
 
