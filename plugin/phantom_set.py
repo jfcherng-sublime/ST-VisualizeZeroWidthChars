@@ -6,7 +6,13 @@ from .settings import get_package_name, get_setting
 
 PHANTOM_TEMPLATE = """
 <body id="visualize-zero-width-chars-phantom">
-    <style>{style}</style>
+    <style>
+        html, body {{
+            margin: 0;
+            padding: 0;
+        }}
+        {style}
+    </style>
     <span class="desc">{text}</span>
 </body>
 """
