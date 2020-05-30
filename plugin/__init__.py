@@ -2,6 +2,7 @@ import sublime
 from .functions import compile_find_chars_regex, view_is_dirty_val
 from .Globals import global_get, global_set
 from .log import apply_user_log_level, init_plugin_logger, log
+from .PhatomSetsManager import PhatomSetsManager
 from .RendererThread import RendererThread
 from .settings import get_package_name, get_setting_renderer_interval, get_settings_object
 from .utils import is_view_normal_ready
@@ -34,6 +35,7 @@ def tear_down() -> None:
 
     get_settings_object().clear_on_change(get_package_name())
     global_get("renderer_thread").cancel()
+    PhatomSetsManager.clear()
 
 
 def set_is_dirty_for_all_views(is_dirty: bool) -> None:
