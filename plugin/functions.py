@@ -13,15 +13,15 @@ def compile_find_chars_regex() -> Tuple[Pattern, List[str]]:
     @return (compiled regex object, enabled rule names)
     """
 
+    # fmt: off
     enabled_rules = {
         rule_name: rule
         for rule_name, rule in get_setting("find_char_regex_ranges").items()
         if rule["enabled"]
     }
+    # fmt: on
 
-    regex = "[{char_range}]".format(
-        char_range="".join(["".join(rule["chars"]) for rule in enabled_rules.values()])
-    )
+    regex = "[{char_range}]".format(char_range="".join(["".join(rule["chars"]) for rule in enabled_rules.values()]))
 
     log("debug", "Invisible chars matching regex: {}".format(regex))
 
@@ -31,17 +31,13 @@ def compile_find_chars_regex() -> Tuple[Pattern, List[str]]:
         log(
             "critical",
             "Cannot compile regex `{regex}` because `{reason}`. "
-            'Please check "find_char_regex_ranges" in plugin settings.'.format(
-                regex=regex, reason=e
-            ),
+            'Please check "find_char_regex_ranges" in plugin settings.'.format(regex=regex, reason=e),
         )
 
     return regex_obj, list(enabled_rules.keys())
 
 
-def view_last_typing_timestamp_val(
-    view: sublime.View, timestamp_s: Optional[float] = None
-) -> Optional[float]:
+def view_last_typing_timestamp_val(view: sublime.View, timestamp_s: Optional[float] = None) -> Optional[float]:
     """
     @brief Set/Get the last timestamp (in sec) when "VZWC_char_regions" is updated
 
@@ -113,4 +109,4 @@ def is_view_too_large(view: Optional[sublime.View]) -> bool:
     @return True if the view is too large, False otherwise.
     """
 
-    return bool(view and view.size() > get_setting("disable_if_file_larger_than"))
+    return bool(view and len(view) > get_setting("disable_if_file_larger_than"))
