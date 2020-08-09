@@ -48,7 +48,7 @@ def view_last_typing_timestamp_val(view: sublime.View, timestamp_s: Optional[flo
     """
 
     if timestamp_s is None:
-        return view.settings().get("VZWC_last_update_timestamp", False)
+        return view.settings().get("VZWC_last_update_timestamp", 0)  # type: ignore
 
     view.settings().set("VZWC_last_update_timestamp", timestamp_s)
     return None
@@ -65,7 +65,7 @@ def view_is_dirty_val(view: sublime.View, is_dirty: Optional[bool] = None) -> Op
     """
 
     if is_dirty is None:
-        return view.settings().get("VZWC_is_dirty", True)
+        return view.settings().get("VZWC_is_dirty", True)  # type: ignore
 
     view.settings().set("VZWC_is_dirty", is_dirty)
     return None
