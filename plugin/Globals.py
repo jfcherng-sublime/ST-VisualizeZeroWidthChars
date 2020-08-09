@@ -1,4 +1,5 @@
 import logging
+import sublime
 import threading
 from typing import Any, List, Optional, Pattern
 from .utils import dotted_get, dotted_set
@@ -8,6 +9,9 @@ class Globals:
     """
     @brief This class stores application-level global variables.
     """
+
+    # the plugin settings object
+    settings = None  # type: sublime.Settings
 
     # the logger to log messages
     logger = None  # type: logging.Logger
