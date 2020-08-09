@@ -2,10 +2,7 @@ VisualizeZeroWidthChars has been updated. To see the changelog, visit
 Preferences » Package Settings » VisualizeZeroWidthChars » CHANGELOG
 
 
-## [0.2.8] - 2020-05-24
+## [0.2.9] - 2020-08-09
 
 ### Fixed
-- Phantom padding for some color schemes.
-
-  Some color schemes such as Material Theme's have large
-  unneeded padding for phantoms somehow.
+- Delete phantoms when plugin unloaded.
