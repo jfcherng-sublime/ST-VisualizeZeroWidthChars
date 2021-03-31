@@ -5,10 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [0.2.11] - 2021-03-31
+
+### Docs
+- This plugin has been deprecated.
+
+  If you are using Sublime Text 4, you can set `draw_unicode_white_space` to draw invisible Unicode whitespace.
+  In that case, you probably don't need this plugin and hence I deprecate it.
+
+
 ## [0.2.10] - 2020-08-09
 
 ### Fixed
 - Prevent from frequently calling `sublime.load_settings()`.
+
 
 ## [0.2.9] - 2020-08-09
 
