@@ -1,4 +1,4 @@
-# ST-VisualizeZeroWidthChars
+# [Deprecated] ST-VisualizeZeroWidthChars
 
 [![Travis (.org) branch](https://img.shields.io/travis/jfcherng-sublime/ST-VisualizeZeroWidthChars/master?style=flat-square)](https://travis-ci.org/jfcherng-sublime/ST-VisualizeZeroWidthChars)
 [![Package Control](https://img.shields.io/packagecontrol/dt/VisualizeZeroWidthChars?style=flat-square)](https://packagecontrol.io/packages/VisualizeZeroWidthChars)
@@ -18,8 +18,8 @@ Can you tel​l me wh​ere are ​zero-width spaces?
 
 ## Important Notice
 
-If you are using Sublime Text 4, you can set `draw_unicode_white_space` to draw invisible unicode whitespace.
-In that case, you probably don't need this plugin.
+If you are using Sublime Text 4, you can set `draw_unicode_white_space` to draw invisible Unicode whitespace.
+In that case, you probably don't need this plugin and hence I deprecate it.
 
 ## Installation
 
