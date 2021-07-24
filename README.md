@@ -1,4 +1,4 @@
-# [Deprecated] ST-VisualizeZeroWidthChars
+# ❌ [Deprecated] ST-VisualizeZeroWidthChars
 
 [![Travis (.org) branch](https://img.shields.io/travis/jfcherng-sublime/ST-VisualizeZeroWidthChars/master?style=flat-square)](https://travis-ci.org/jfcherng-sublime/ST-VisualizeZeroWidthChars)
 [![Package Control](https://img.shields.io/packagecontrol/dt/VisualizeZeroWidthChars?style=flat-square)](https://packagecontrol.io/packages/VisualizeZeroWidthChars)
